@@ -2,6 +2,7 @@ import React from "react";
 import { useRouter } from "next/router";
 import Loading from "../../components/Loading";
 import { FaLockOpen, FaLock } from "react-icons/fa";
+import Chat from "../../components/chat/chat";
 
 function Channel({ channel }) {
   const router = useRouter();
@@ -17,6 +18,8 @@ function Channel({ channel }) {
         {channel.name}
       </h1>
       <p>{channel.description}</p>
+      <hr />
+      <Chat channel={channel}></Chat>
     </div>
   );
 }
@@ -45,7 +48,6 @@ export async function getStaticProps({ params }) {
   );
 
   const data = await response.json();
-  console.log(data);
 
   if (!data.channel) {
     return {
